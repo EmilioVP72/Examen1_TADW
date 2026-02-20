@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS short_urls (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    original_url TEXT NOT NULL,
+    code VARCHAR(10) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS url_visits (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    short_url_id INT,
+    ip VARCHAR(45),
+    user_agent TEXT,
+    visited_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (short_url_id) REFERENCES short_urls(id) ON DELETE CASCADE
+);

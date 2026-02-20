@@ -33,7 +33,9 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: secret
     ports:
-      - "33065:3306"
+      - "3307:3306"
+    volumes:
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend
 
